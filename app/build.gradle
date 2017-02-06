@@ -1,0 +1,125 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+  compileSdkVersion 25
+  buildToolsVersion "25.0.2"
+  defaultConfig {
+    applicationId "com.grayherring.kotlintest"
+    minSdkVersion 15
+    targetSdkVersion 25
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+  }
+
+  packagingOptions {
+    exclude 'META-INF/DEPENDENCIES.txt'
+    exclude 'META-INF/LICENSE.txt'
+    exclude 'META-INF/NOTICE.txt'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/notice.txt'
+    exclude 'META-INF/license.txt'
+    exclude 'META-INF/dependencies.txt'
+    exclude 'META-INF/LGPL2.1'
+    exclude 'META-INF/rxjava.properties'
+
+    exclude 'META-INF/notice'
+    exclude 'META-INF/notice.txt'
+    exclude 'META-INF/license'
+    exclude 'META-INF/license.txt'
+  }
+}
+kapt {
+  generateStubs = true
+}
+
+
+dependencies {
+  final SUPPORT_LIBRARY_VERSION = '25.1.1'
+  final RETROFIT_VERSION = '2.0.2'
+  final OKHTTP_VERSION = '3.2.0'
+  final DAGGER_VERSION = '2.9'
+  final GSON_VERSION = '2.8.0'
+  final RX_JAVA_VERSION = '2.0.5'
+  final RX_ANDROID_VERSION = '2.0.1'
+  final DEBUG_DRAWER_VERSION = '0.7.0'
+  final RXBINDING_VERSON = '1.0.0'
+  final RXLIFECYCLE = '2.0.1'
+
+
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  //standered set?
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+  compile "com.android.support:gridlayout-v7:$SUPPORT_LIBRARY_VERSION"
+  compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
+  compile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+  compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+  compile "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
+
+  compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+  compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+  compile "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
+  compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
+  // FIXME next Picasso update will nullify this
+  compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
+
+  compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RXBINDING_VERSON"
+  compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$RXBINDING_VERSON"
+  compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RXBINDING_VERSON"
+  compile "com.jakewharton.rxbinding:rxbinding-design-kotlin:$RXBINDING_VERSON"
+
+  compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+  compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+
+  compile "com.trello.rxlifecycle2:rxlifecycle-components:$RXLIFECYCLE"
+  compile "com.trello.rxlifecycle2:rxlifecycle-kotlin:$RXLIFECYCLE"
+
+
+  compile "com.google.code.gson:gson:$GSON_VERSION"
+
+  compile "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION"
+  compile "io.reactivex:rxkotlin:0.60.0"
+
+  compile "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION"
+
+  //dager
+  compile "com.google.dagger:dagger:$DAGGER_VERSION"
+  kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+  provided 'org.glassfish:javax.annotation:10.0-b28'
+
+
+  compile 'com.jakewharton.timber:timber:4.0.1'
+
+  compile 'com.hannesdorfmann:adapterdelegates2:2.0.0'
+
+
+  // Debug Drawer Library
+  debugCompile "io.palaima.debugdrawer:debugdrawer-view:$DEBUG_DRAWER_VERSION"
+  releaseCompile "io.palaima.debugdrawer:debugdrawer-view-no-op:$DEBUG_DRAWER_VERSION"
+  // Debug Drawer Modules
+  debugCompile "io.palaima.debugdrawer:debugdrawer-commons:$DEBUG_DRAWER_VERSION"
+  debugCompile "io.palaima.debugdrawer:debugdrawer-actions:$DEBUG_DRAWER_VERSION"
+  compile "io.palaima.debugdrawer:debugdrawer-timber:$DEBUG_DRAWER_VERSION"
+
+  //end of standard set
+}
+repositories {
+  mavenCentral()
+}
