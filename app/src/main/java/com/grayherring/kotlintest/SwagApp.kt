@@ -1,5 +1,6 @@
 package com.grayherring.kotlintest
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import io.palaima.debugdrawer.timber.data.LumberYard
@@ -10,12 +11,12 @@ import timber.log.Timber
  */
 
 class SwagApp : Application() {
-    private var component: SwagAppComponent? = null
+     private lateinit var component: SwagAppComponent
 
     override fun onCreate() {
         super.onCreate()
         component = initComponent()
-        component!!.inject(this)
+        component.inject(this)
 
         val lumberYard = LumberYard.getInstance(this)
         lumberYard.cleanUp()
@@ -24,15 +25,15 @@ class SwagApp : Application() {
     }
 
     fun getComponent(): SwagAppComponent {
-        return component!!
+        return component
     }
 
     private fun initComponent(): SwagAppComponent {
         return SwagAppComponent.Initializer.init(this)
     }
 
-    operator fun get(context: Context): SwagApp {
-        return context.applicationContext as SwagApp
+    operator fun get(activity: Activity): SwagApp {
+        return activity.application as SwagApp
     }
 
 }

@@ -11,7 +11,7 @@ import dagger.Provides
 @Module
 class SwagModule(private val app: SwagApp) {
 
-    @Provides @PerApp internal fun provideApplication(): Application {
+    @Provides @PerApp fun provideApplication(): Application {
         return app
     }
 

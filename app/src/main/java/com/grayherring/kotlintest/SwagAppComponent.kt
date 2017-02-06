@@ -20,7 +20,6 @@ interface SwagAppComponent {
         }
 
         companion object {
-
             fun init(app: SwagApp): SwagAppComponent {
                 return DaggerSwagAppComponent.builder()
                         .swagModule(SwagModule(app))

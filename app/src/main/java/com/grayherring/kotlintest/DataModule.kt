@@ -12,7 +12,7 @@ import timber.log.Timber
 @Module
 class DataModule {
 
-    @Provides @PerApp internal fun providePicasso(app: Application, client: OkHttpClient): Picasso {
+    @Provides @PerApp fun providePicasso(app: Application, client: OkHttpClient): Picasso {
         return Picasso.Builder(app)
                 .downloader(OkHttp3Downloader(client))
                 .listener { picasso, uri, e -> Timber.e(e, "Failed to load image: %s", uri) }
