@@ -1,9 +1,10 @@
 package com.grayherring.kotlintest.data
 
-import com.grayherring.kotlintest.data.module.Book
 import rx.Observable
 import retrofit2.Response
 import retrofit2.http.*
+import com.grayherring.kotlintest.data.module.Book
+
 
 
 /**
@@ -39,4 +40,7 @@ interface SwagApi {
     fun updateBook(@Path(value = "url") url: String, @FieldMap params: Map<String, String>): Observable<Book>
 
 }
+
+
+
 
