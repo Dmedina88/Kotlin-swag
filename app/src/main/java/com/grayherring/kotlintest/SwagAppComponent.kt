@@ -1,7 +1,7 @@
 package com.grayherring.kotlintest
 
 import com.grayherring.kotlintest.dagger.PerApp
-import com.grayherring.kotlintest.data.ApiModule
+import com.grayherring.kotlintest.data.networking.ApiModule
 import com.grayherring.kotlintest.ui.home.HomeComponent
 import com.grayherring.kotlintest.ui.home.HomeModule
 import dagger.Component

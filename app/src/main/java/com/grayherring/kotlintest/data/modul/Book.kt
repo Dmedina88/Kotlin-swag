@@ -1,4 +1,4 @@
-package com.grayherring.kotlintest.data.module
+package com.grayherring.kotlintest.data.modul
 /**
  * Created by davidmedina on 2/5/17 =).
  */

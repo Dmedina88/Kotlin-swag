@@ -50,8 +50,8 @@ kapt {
 
 dependencies {
   final SUPPORT_LIBRARY_VERSION = '25.1.1'
-  final RETROFIT_VERSION = '2.0.2'
-  final OKHTTP_VERSION = '3.2.0'
+  final RETROFIT_VERSION = '2.1.0'
+  final OKHTTP_VERSION = '3.6.0'
   final DAGGER_VERSION = '2.9'
   final GSON_VERSION = '2.8.0'
   final RX_JAVA_VERSION = '2.0.5'
@@ -75,11 +75,14 @@ dependencies {
   compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
   compile "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
   compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
-  compile "com.squareup.retrofit2:converter-moshi:2.0.0"
+  compile "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION"
+  compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
+  compile 'com.squareup.picasso:picasso:2.5.2'
+
+
 
   // FIXME next Picasso update will nullify this
-  compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
-
+  //compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
   compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RXBINDING_VERSON"
   compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$RXBINDING_VERSON"
   compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RXBINDING_VERSON"

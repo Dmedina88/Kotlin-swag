@@ -1,6 +1,6 @@
 package com.grayherring.kotlintest.data
 
-import com.grayherring.kotlintest.data.module.Book
+import com.grayherring.kotlintest.data.modul.Book
 import com.grayherring.kotlintest.util.applySchedulers
 import retrofit2.Response
 import rx.Observable

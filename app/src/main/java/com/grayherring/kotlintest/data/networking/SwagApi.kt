@@ -3,7 +3,7 @@ package com.grayherring.kotlintest.data
 import rx.Observable
 import retrofit2.Response
 import retrofit2.http.*
-import com.grayherring.kotlintest.data.module.Book
+import com.grayherring.kotlintest.data.modul.Book
 
 
 
@@ -14,29 +14,29 @@ import com.grayherring.kotlintest.data.module.Book
 interface SwagApi {
 
 
-    @GET("/books")
+    @GET("books")
     fun getBooks(): Observable<Array<Book>>
 
-    @DELETE("/clean/")
+    @DELETE("clean/")
     fun deleteAllBooks(): Observable<Response<String>>
 
-    @DELETE("/{url}")
+    @DELETE("{url}")
     fun deleteBook(@Path("url") url: String): Observable<Response<String>>
 
     @FormUrlEncoded
-    @GET("/{url}")
+    @GET("{url}")
     fun getBook(@Path("url") url: String): Observable<Book>
 
     @FormUrlEncoded
-    @POST("/books")
+    @POST("books")
     fun postBook(@FieldMap params: Map<String, String>): Observable<Book>
 
     @FormUrlEncoded
-    @PUT("/{url}")
+    @PUT("{url}")
     fun checkOutBook(@Path(value = "url") url: String, @Field("lastCheckedOutBy") lastCheckedOutBy: String): Observable<Book>
 
     @FormUrlEncoded
-    @PUT("/{url}")
+    @PUT("{url}")
     fun updateBook(@Path(value = "url") url: String, @FieldMap params: Map<String, String>): Observable<Book>
 
 }
