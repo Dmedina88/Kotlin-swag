@@ -2,7 +2,6 @@ package com.grayherring.kotlintest
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
 import io.palaima.debugdrawer.timber.data.LumberYard
 import timber.log.Timber
 
@@ -11,7 +10,9 @@ import timber.log.Timber
  */
 
 class SwagApp : Application() {
-     private lateinit var component: SwagAppComponent
+
+    var component = SwagAppComponent.Initializer.init(this)
+        private set get
 
     override fun onCreate() {
         super.onCreate()
@@ -22,10 +23,6 @@ class SwagApp : Application() {
         lumberYard.cleanUp()
         Timber.plant(lumberYard.tree())
         Timber.plant(Timber.DebugTree())
-    }
-
-    fun getComponent(): SwagAppComponent {
-        return component
     }
 
     private fun initComponent(): SwagAppComponent {

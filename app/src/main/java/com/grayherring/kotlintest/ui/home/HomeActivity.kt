@@ -18,7 +18,7 @@ class HomeActivity : BaseActivity() {
 
     override fun initializeDependencyInjector() {
         component = (this.application as SwagApp)
-                .getComponent()
+                .component
                 .plus(HomeModule(this))
         component.inject(this)
     }
