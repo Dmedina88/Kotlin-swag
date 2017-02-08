@@ -37,8 +37,12 @@ captures/
 .idea/workspace.xml
 .idea
 .idea/
+.idea/*
 /.idea/libraries
 
 
 # Keystore files
 *.jks
+.idea/compiler.xml
+.idea/gradle.xml
+.idea/runConfigurations.xml
