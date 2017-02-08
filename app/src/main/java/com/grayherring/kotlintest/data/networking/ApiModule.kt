@@ -4,8 +4,7 @@ import com.grayherring.kotlintest.BuildConfig
 import com.grayherring.kotlintest.ExceptionInterceptor
 import com.grayherring.kotlintest.dagger.PerApp
 import com.grayherring.kotlintest.dagger.Qualifiers.API
-import com.grayherring.kotlintest.data.SwagApi
-import com.grayherring.kotlintest.data.SwagApiClient
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
@@ -29,7 +28,7 @@ class ApiModule {
         return clientBuilder.build()
     }
 
-    @Provides @PerApp fun provideExceptionInterceptor(): ExceptionInterceptor = ExceptionInterceptor()
+    @Provides @PerApp fun provideExceptionInterceptor(moshi: Moshi) = ExceptionInterceptor(moshi)
 
     @Provides @PerApp fun provideHttpUrl(): HttpUrl
             = HttpUrl.parse("http://prolific-interview.herokuapp.com/56609f690c33f80009dde7e5/")
@@ -38,6 +37,8 @@ class ApiModule {
             = retrofit.create(SwagApi::class.java)
 
     @Provides @PerApp fun provideSwagApiClient(@API swagApi: SwagApi) = SwagApiClient(swagApi)
+
+    @Provides @PerApp fun provideSMoshi() = Moshi.Builder().build()
 
     @Provides @PerApp fun provideRetrofit(baseUrl: HttpUrl, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()

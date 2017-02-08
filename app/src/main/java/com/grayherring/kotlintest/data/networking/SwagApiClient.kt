@@ -1,4 +1,4 @@
-package com.grayherring.kotlintest.data
+package com.grayherring.kotlintest.data.networking
 
 import com.grayherring.kotlintest.data.modul.Book
 import com.grayherring.kotlintest.util.applySchedulers
@@ -35,8 +35,8 @@ class SwagApiClient(val swagApi: SwagApi) : SwagApi {
         return swagApi.checkOutBook(url, lastCheckedOutBy).applySchedulers()
     }
 
-    override fun updateBook(url: String, params: Map<String, String>): Observable<Book> {
-        return swagApi.updateBook(url, params).applySchedulers()
+    override fun updateBook(url: String, book: Book): Observable<Book> {
+        return swagApi.updateBook(url, book).applySchedulers()
     }
 
 }

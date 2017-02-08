@@ -1,10 +1,9 @@
-package com.grayherring.kotlintest.data
+package com.grayherring.kotlintest.data.networking
 
-import rx.Observable
+import com.grayherring.kotlintest.data.modul.Book
 import retrofit2.Response
 import retrofit2.http.*
-import com.grayherring.kotlintest.data.modul.Book
-
+import rx.Observable
 
 
 /**
@@ -37,7 +36,7 @@ interface SwagApi {
 
     @FormUrlEncoded
     @PUT("{url}")
-    fun updateBook(@Path(value = "url") url: String, @FieldMap params: Map<String, String>): Observable<Book>
+    fun updateBook(@Path(value = "url") url: String, @Body book: Book): Observable<Book>
 
 }
 

@@ -7,5 +7,7 @@ import dagger.Subcomponent
 @Subcomponent(modules = arrayOf(HomeModule::class))
 interface HomeComponent {
     fun inject(activity: HomeActivity)
+    fun inject(homeVM: HomeVM)
+
 }
 

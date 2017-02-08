@@ -4,6 +4,7 @@ import com.grayherring.kotlintest.dagger.PerApp
 import com.grayherring.kotlintest.data.networking.ApiModule
 import com.grayherring.kotlintest.ui.home.HomeComponent
 import com.grayherring.kotlintest.ui.home.HomeModule
+import com.grayherring.kotlintest.ui.util.DebugViewActivity
 import dagger.Component
 
 @PerApp
@@ -29,6 +30,8 @@ interface SwagAppComponent {
             }
         }
     }
+
+    fun inject(app: DebugViewActivity)
 
 }
 

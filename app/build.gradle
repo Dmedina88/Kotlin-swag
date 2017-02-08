@@ -24,6 +24,10 @@ android {
     main.java.srcDirs += 'src/main/kotlin'
   }
 
+  dataBinding {
+    enabled = true
+  }
+
   packagingOptions {
     exclude 'META-INF/DEPENDENCIES.txt'
     exclude 'META-INF/LICENSE.txt'
@@ -79,14 +83,10 @@ dependencies {
   compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
   compile 'com.squareup.picasso:picasso:2.5.2'
 
-
-
-  // FIXME next Picasso update will nullify this
-  //compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
   compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RXBINDING_VERSON"
-  compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$RXBINDING_VERSON"
-  compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RXBINDING_VERSON"
-  compile "com.jakewharton.rxbinding:rxbinding-design-kotlin:$RXBINDING_VERSON"
+  //  compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$RXBINDING_VERSON"
+  //  compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RXBINDING_VERSON"
+  //  compile "com.jakewharton.rxbinding:rxbinding-design-kotlin:$RXBINDING_VERSON"
 
   compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
   compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
@@ -110,6 +110,12 @@ dependencies {
   compile 'com.jakewharton.timber:timber:4.0.1'
 
   compile 'com.hannesdorfmann:adapterdelegates2:2.0.0'
+
+  //code gen
+  kapt 'com.android.databinding:compiler:2.2.3'
+  kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+
+
 
 
   // Debug Drawer Library

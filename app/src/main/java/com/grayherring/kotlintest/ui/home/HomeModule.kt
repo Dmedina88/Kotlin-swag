@@ -3,6 +3,7 @@ package com.grayherring.kotlintest.ui.home
 import android.app.Activity
 import android.content.Context
 import com.grayherring.kotlintest.dagger.PerActivity
+import com.grayherring.kotlintest.data.networking.SwagApiClient
 import dagger.Module
 import dagger.Provides
 
@@ -16,5 +17,6 @@ class HomeModule(private val activity: HomeActivity) {
     @Provides @PerActivity internal fun provideActivity(): Activity {
         return activity
     }
+
 
 }

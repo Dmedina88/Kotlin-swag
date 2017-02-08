@@ -1,35 +1,34 @@
 package com.grayherring.kotlintest.ui.home
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.grayherring.kotlintest.R
 import com.grayherring.kotlintest.SwagApp
 import com.grayherring.kotlintest.dagger.Injector
-import com.grayherring.kotlintest.dagger.PerApp
-import com.grayherring.kotlintest.data.SwagApiClient
+import com.grayherring.kotlintest.databinding.ActivityHomeBinding
 import com.grayherring.kotlintest.ui.base.BaseActivity
-import timber.log.Timber
 import javax.inject.Inject
+
 
 class HomeActivity : BaseActivity() {
     private lateinit var component: HomeComponent
-
-    @Inject @PerApp
-    lateinit var swagApiClient: SwagApiClient
+    private lateinit var binding: ActivityHomeBinding
+    @Inject lateinit var homeVM : HomeVM
 
     override fun initializeDependencyInjector() {
         component = (this.application as SwagApp)
                 .component
                 .plus(HomeModule(this))
         component.inject(this)
+        component.inject(homeVM)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
+        homeVM.binding = binding
 
-        swagApiClient.getBooks().subscribe({ books -> Timber.i(books.toString()) },
-                { error -> this.logError(error) })
-
+        homeVM.refreshBooks()
     }
 
     override fun getSystemService(name: String): Any {
