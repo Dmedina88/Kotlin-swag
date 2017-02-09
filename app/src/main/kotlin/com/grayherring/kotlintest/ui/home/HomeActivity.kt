@@ -13,7 +13,7 @@ import javax.inject.Inject
 class HomeActivity : BaseActivity() {
     private lateinit var component: HomeComponent
     private lateinit var binding: ActivityHomeBinding
-    @Inject lateinit var homeVM : HomeVM
+    @Inject lateinit var homeVM: HomeVM
 
     override fun initializeDependencyInjector() {
         component = (this.application as SwagApp)
@@ -26,9 +26,9 @@ class HomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
-        homeVM.binding = binding
 
-        homeVM.refreshBooks()
+        homeVM.onCreate()
+        this.addBindable(homeVM)
     }
 
     override fun getSystemService(name: String): Any {
