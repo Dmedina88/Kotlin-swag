@@ -2,6 +2,7 @@ package com.grayherring.kotlintest.ui.base
 
 import android.os.Bundle
 import android.view.KeyEvent
+import com.grayherring.kotlintest.SwagApp
 import com.grayherring.kotlintest.util.ErrorHandler
 import com.grayherring.kotlintest.util.KeyUpListener
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
@@ -37,6 +38,8 @@ abstract class BaseActivity : RxAppCompatActivity(), ErrorHandler {
   fun addBindable(lifeCycleBindable: LifeCycleBindable) {
     lifeCycleBindables.add(lifeCycleBindable)
   }
+
+  fun getAppComponent() = (this.application as SwagApp).component
 
   override fun onResume() {
     for (bindable in lifeCycleBindables) {

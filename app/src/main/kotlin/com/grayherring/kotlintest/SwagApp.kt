@@ -12,12 +12,10 @@ import timber.log.Timber
 
 class SwagApp : Application() {
 
-  var component = SwagAppComponent.Initializer.init(this)
-    private set get
+  val component = initComponent()
 
   override fun onCreate() {
     super.onCreate()
-    component = initComponent()
     component.inject(this)
 
     val lumberYard = LumberYard.getInstance(this)
