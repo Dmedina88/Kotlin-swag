@@ -14,17 +14,17 @@ import dagger.Provides
 @Module
 class SwagModule(private val app: SwagApp) {
 
-    @Provides @PerApp fun provideApplication(): Application {
-        return app
-    }
+  @Provides @PerApp fun provideApplication(): Application {
+    return app
+  }
 
-    @Provides @PerApp fun provideKeyUpListener(): KeyUpListener {
-        if (BuildConfig.DEBUG) {
-            return DebugKeyUpListener()
-        } else {
-            return KeyUpListener
-        }
+  @Provides @PerApp fun provideKeyUpListener(): KeyUpListener {
+    if (BuildConfig.DEBUG) {
+      return DebugKeyUpListener()
+    } else {
+      return KeyUpListener
     }
+  }
 
-    @Provides @PerApp fun provideErrorHandler(): ErrorHandler = ErrorHandler
+  @Provides @PerApp fun provideErrorHandler(): ErrorHandler = ErrorHandler
 }

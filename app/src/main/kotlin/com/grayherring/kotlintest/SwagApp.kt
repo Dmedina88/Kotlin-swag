@@ -12,27 +12,27 @@ import timber.log.Timber
 
 class SwagApp : Application() {
 
-    var component = SwagAppComponent.Initializer.init(this)
-        private set get
+  var component = SwagAppComponent.Initializer.init(this)
+    private set get
 
-    override fun onCreate() {
-        super.onCreate()
-        component = initComponent()
-        component.inject(this)
+  override fun onCreate() {
+    super.onCreate()
+    component = initComponent()
+    component.inject(this)
 
-        val lumberYard = LumberYard.getInstance(this)
-        lumberYard.cleanUp()
-        Timber.plant(lumberYard.tree())
-        Timber.plant(Timber.DebugTree())
-    }
+    val lumberYard = LumberYard.getInstance(this)
+    lumberYard.cleanUp()
+    Timber.plant(lumberYard.tree())
+    Timber.plant(Timber.DebugTree())
+  }
 
-    private fun initComponent(): SwagAppComponent {
-        return SwagAppComponent.Initializer.init(this)
-    }
+  private fun initComponent(): SwagAppComponent {
+    return SwagAppComponent.Initializer.init(this)
+  }
 
-    operator fun get(activity: Activity): SwagApp {
-        return activity.application as SwagApp
-    }
+  operator fun get(activity: Activity): SwagApp {
+    return activity.application as SwagApp
+  }
 
 }
 

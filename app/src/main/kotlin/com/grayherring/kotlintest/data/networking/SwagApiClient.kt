@@ -11,32 +11,32 @@ import rx.Observable
  */
 class SwagApiClient(val swagApi: SwagApi) : SwagApi {
 
-    override fun getBooks(): Observable<Array<Book>> {
-        return swagApi.getBooks().applySchedulers()
-    }
+  override fun getBooks(): Observable<Array<Book>> {
+    return swagApi.getBooks().applySchedulers()
+  }
 
-    override fun deleteAllBooks(): Observable<Response<String>> {
-        return swagApi.deleteAllBooks().applySchedulers()
-    }
+  override fun deleteAllBooks(): Observable<Response<String>> {
+    return swagApi.deleteAllBooks().applySchedulers()
+  }
 
-    override fun deleteBook(url: String): Observable<Response<String>> {
-        return swagApi.deleteBook(url).applySchedulers()
-    }
+  override fun deleteBook(url: String): Observable<Response<String>> {
+    return swagApi.deleteBook(url).applySchedulers()
+  }
 
-    override fun getBook(url: String): Observable<Book> {
-        return swagApi.getBook(url).applySchedulers()
-    }
+  override fun getBook(url: String): Observable<Book> {
+    return swagApi.getBook(url).applySchedulers()
+  }
 
-    override fun postBook(params: Map<String, String>): Observable<Book> {
-        return swagApi.postBook(params).applySchedulers()
-    }
+  override fun postBook(params: Map<String, String>): Observable<Book> {
+    return swagApi.postBook(params).applySchedulers()
+  }
 
-    override fun checkOutBook(url: String, lastCheckedOutBy: String): Observable<Book> {
-        return swagApi.checkOutBook(url, lastCheckedOutBy).applySchedulers()
-    }
+  override fun checkOutBook(url: String, lastCheckedOutBy: String): Observable<Book> {
+    return swagApi.checkOutBook(url, lastCheckedOutBy).applySchedulers()
+  }
 
-    override fun updateBook(url: String, book: Book): Observable<Book> {
-        return swagApi.updateBook(url, book).applySchedulers()
-    }
+  override fun updateBook(url: String, book: Book): Observable<Book> {
+    return swagApi.updateBook(url, book).applySchedulers()
+  }
 
 }

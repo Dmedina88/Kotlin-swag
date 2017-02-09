@@ -8,12 +8,12 @@ import java.io.IOException
 
 class ExceptionInterceptor(val moshi: Moshi) : Interceptor {
 
-    @Throws(IOException::class)
-    override fun intercept(chain: Interceptor.Chain?): Response {
-        val request = chain?.request()
-        val response = chain?.proceed(request)
-        Timber.i(response.toString())
-        return response!!
-    }
+  @Throws(IOException::class)
+  override fun intercept(chain: Interceptor.Chain?): Response {
+    val request = chain?.request()
+    val response = chain?.proceed(request)
+    Timber.i(response.toString())
+    return response!!
+  }
 
 }
