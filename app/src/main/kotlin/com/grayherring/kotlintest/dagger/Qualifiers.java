@@ -13,4 +13,7 @@ public final class Qualifiers {
 
   @Qualifier @Retention(RUNTIME) public @interface API {
   }
+
+  @Qualifier @Retention(RUNTIME) public @interface MockPref {
+  }
 }

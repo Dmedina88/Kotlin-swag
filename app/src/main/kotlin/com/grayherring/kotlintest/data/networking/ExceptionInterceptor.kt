@@ -10,7 +10,6 @@ class ExceptionInterceptor(val moshi: Moshi) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain?): Response {
-        Timber.i("hello")
         val request = chain?.request()
         val response = chain?.proceed(request)
         Timber.i(response.toString())
