@@ -26,5 +26,5 @@ class SwagModule(private val app: SwagApp) {
         }
     }
 
-    @Provides @PerApp fun providErrorHandler(): ErrorHandler = ErrorHandler
+    @Provides @PerApp fun provideErrorHandler(): ErrorHandler = ErrorHandler
 }

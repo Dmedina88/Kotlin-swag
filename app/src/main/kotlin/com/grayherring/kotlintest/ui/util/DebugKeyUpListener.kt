@@ -10,6 +10,11 @@ import com.grayherring.kotlintest.util.KeyUpListener
  */
 class DebugKeyUpListener : KeyUpListener {
     var index = 0
+    private val SEQUENCE = intArrayOf(
+            KeyEvent.KEYCODE_VOLUME_DOWN,
+            KeyEvent.KEYCODE_VOLUME_DOWN,
+            KeyEvent.KEYCODE_VOLUME_DOWN
+    )
 
     override fun onKeyUp(activity: Activity, keyCode: Int, event: KeyEvent) {
         if (keyCode == SEQUENCE[index] && index == SEQUENCE.lastIndex) {
@@ -26,10 +31,6 @@ class DebugKeyUpListener : KeyUpListener {
     }
 }
 
-private val SEQUENCE = intArrayOf(
-        KeyEvent.KEYCODE_VOLUME_DOWN,
-        KeyEvent.KEYCODE_VOLUME_DOWN,
-        KeyEvent.KEYCODE_VOLUME_DOWN
-)
+
 
 
