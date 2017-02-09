@@ -10,36 +10,33 @@ import javax.inject.Inject
 
 
 /**
- * Created by davidmedina on 2/8/17 =).
+ * Created by David Medina.
  */
 @PerActivity
 class HomeVM @Inject constructor(val swagApiClient: SwagApiClient) : BaseVM() {
 
-    var composite = CompositeSubscription()
+  var composite = CompositeSubscription()
 
-    val books = arrayListOf<Book>()
-        get
+  val books = arrayListOf<Book>()
+    get
 
+  fun refreshBooks() {
+    composite.add(
+        swagApiClient.getBooks().subscribe({ books ->
+          this.books.clear()
+          this.books.addAll(books)
+          Timber.i("###  all %s", this.books.toString())
+        }, { error -> this.logError(error) })
+    )
+  }
 
+  override fun onDestroy() {
+    composite.unsubscribe()
+  }
 
-    fun refreshBooks() {
-        composite.add(
-                swagApiClient.getBooks().subscribe({ books ->
-                    this.books.clear()
-                    this.books.addAll(books)
-                    Timber.i("###  all %s", this.books.toString())
-                }, { error -> this.logError(error) })
-        )
-    }
-
-    override fun onDestroy() {
-        composite.unsubscribe()
-    }
-
-    override fun onCreate() {
-        refreshBooks()
-    }
-
+  override fun onCreate() {
+    refreshBooks()
+  }
 
 }
 

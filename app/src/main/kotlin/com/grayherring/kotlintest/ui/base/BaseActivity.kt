@@ -9,68 +9,68 @@ import javax.inject.Inject
 
 abstract class BaseActivity : RxAppCompatActivity(), ErrorHandler {
 
-    @Inject lateinit internal var keyUpListener: KeyUpListener
-    @Inject lateinit internal var errorHandler: ErrorHandler
+  @Inject lateinit internal var keyUpListener: KeyUpListener
+  @Inject lateinit internal var errorHandler: ErrorHandler
 
-    private val lifeCycleBindables = arrayListOf<LifeCycleBindable>()
+  private val lifeCycleBindables = arrayListOf<LifeCycleBindable>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initializeDependencyInjector()
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    initializeDependencyInjector()
 
-        for (bindable in lifeCycleBindables) {
-            bindable.onCreate()
-        }
+    for (bindable in lifeCycleBindables) {
+      bindable.onCreate()
     }
+  }
 
-    override fun logError(error: Throwable) {
-        errorHandler.logError(Throwable())
+  override fun logError(error: Throwable) {
+    errorHandler.logError(Throwable())
+  }
+
+  protected abstract fun initializeDependencyInjector()
+
+  override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
+    keyUpListener.onKeyUp(this, keyCode, event)
+    return super.onKeyUp(keyCode, event)
+  }
+
+  fun addBindable(lifeCycleBindable: LifeCycleBindable) {
+    lifeCycleBindables.add(lifeCycleBindable)
+  }
+
+  override fun onResume() {
+    for (bindable in lifeCycleBindables) {
+      bindable.onResume()
     }
+    super.onResume()
+  }
 
-    protected abstract fun initializeDependencyInjector()
-
-    override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
-        keyUpListener.onKeyUp(this, keyCode, event)
-        return super.onKeyUp(keyCode, event)
+  override fun onStart() {
+    for (bindable in lifeCycleBindables) {
+      bindable.onStart()
     }
+    super.onStart()
+  }
 
-    fun addBindable(lifeCycleBindable: LifeCycleBindable) {
-        lifeCycleBindables.add(lifeCycleBindable)
+  override fun onPause() {
+    for (bindable in lifeCycleBindables) {
+      bindable.onPause()
     }
+    super.onPause()
+  }
 
-    override fun onResume() {
-        for (bindable in lifeCycleBindables) {
-            bindable.onResume()
-        }
-        super.onResume()
+  override fun onStop() {
+    for (bindable in lifeCycleBindables) {
+      bindable.onStop()
     }
+    super.onStop()
+  }
 
-    override fun onStart() {
-        for (bindable in lifeCycleBindables) {
-            bindable.onStart()
-        }
-        super.onStart()
+  override fun onDestroy() {
+    for (bindable in lifeCycleBindables) {
+      bindable.onResume()
     }
-
-    override fun onPause() {
-        for (bindable in lifeCycleBindables) {
-            bindable.onPause()
-        }
-        super.onPause()
-    }
-
-    override fun onStop() {
-        for (bindable in lifeCycleBindables) {
-            bindable.onStop()
-        }
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        for (bindable in lifeCycleBindables) {
-            bindable.onResume()
-        }
-        super.onDestroy()
-    }
+    super.onDestroy()
+  }
 
 }

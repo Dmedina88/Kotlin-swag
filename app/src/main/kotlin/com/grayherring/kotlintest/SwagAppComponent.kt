@@ -11,27 +11,27 @@ import dagger.Component
 @Component(modules = arrayOf(SwagModule::class, DataModule::class, ApiModule::class))
 interface SwagAppComponent {
 
-    fun inject(app: SwagApp)
+  fun inject(app: SwagApp)
 
-    operator fun plus(module: HomeModule): HomeComponent
+  operator fun plus(module: HomeModule): HomeComponent
 
-    class Initializer private constructor() {
-        init {
-            throw AssertionError("No instances.")
-        }
-
-        companion object {
-            fun init(app: SwagApp): SwagAppComponent {
-                return DaggerSwagAppComponent.builder()
-                        .swagModule(SwagModule(app))
-                        .dataModule(DataModule())
-                        .apiModule(ApiModule())
-                        .build()
-            }
-        }
+  class Initializer private constructor() {
+    init {
+      throw AssertionError("No instances.")
     }
 
-    fun inject(app: DebugViewActivity)
+    companion object {
+      fun init(app: SwagApp): SwagAppComponent {
+        return DaggerSwagAppComponent.builder()
+            .swagModule(SwagModule(app))
+            .dataModule(DataModule())
+            .apiModule(ApiModule())
+            .build()
+      }
+    }
+  }
+
+  fun inject(app: DebugViewActivity)
 
 }
 

@@ -21,63 +21,63 @@ import timber.log.Timber
 
 class DebugViewActivity : BaseActivity() {
 
-    private lateinit var debugView: DebugView;
+  private lateinit var debugView: DebugView;
 
-    override fun initializeDependencyInjector() {
-        (this.application as SwagApp)
-                .component
-                .inject(this)
-    }
+  override fun initializeDependencyInjector() {
+    (this.application as SwagApp)
+        .component
+        .inject(this)
+  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_debug_view)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_debug_view)
 
-        debugView = findViewById(R.id.debug_view) as DebugView
+    debugView = findViewById(R.id.debug_view) as DebugView
 
-        //todo this triger on its own when  its true and restarts
-        //todoissue injecting this as apref
-        val mockPref = BoolPreferences(this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE), "MockPref")
-        val isMockMode = mockPref.isIt()
-        Timber.d("isMockMode enabled -> %s", isMockMode)
-        val mockSwitch = SwitchAction("Mock Mode: ",
-                { value ->
-                    if (isMockMode != value) {
-                        mockPref.set(value)
-                        ProcessPhoenix.triggerRebirth(this@DebugViewActivity)
-                    }
-                }, isMockMode
-        )
+    //todo this triger on its own when  its true and restarts
+    //todoissue injecting this as apref
+    val mockPref = BoolPreferences(this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE), "MockPref")
+    val isMockMode = mockPref.isIt()
+    Timber.d("isMockMode enabled -> %s", isMockMode)
+    val mockSwitch = SwitchAction("Mock Mode: ",
+        { value ->
+          if (isMockMode != value) {
+            mockPref.set(value)
+            ProcessPhoenix.triggerRebirth(this@DebugViewActivity)
+          }
+        }, isMockMode
+    )
 
-        debugView.modules(
-                ActionsModule(
-                        mockSwitch
-                ),
-                TimberModule(),
-                BuildModule(this),
-                DeviceModule(this),
-                NetworkModule(this),
-                SettingsModule(this)
-        )
-    }
+    debugView.modules(
+        ActionsModule(
+            mockSwitch
+        ),
+        TimberModule(),
+        BuildModule(this),
+        DeviceModule(this),
+        NetworkModule(this),
+        SettingsModule(this)
+    )
+  }
 
-    override protected fun onStart() {
-        super.onStart()
-        debugView.onStart()
-    }
+  override protected fun onStart() {
+    super.onStart()
+    debugView.onStart()
+  }
 
-    override protected fun onResume() {
-        super.onResume();
-        debugView.onResume();
-    }
+  override protected fun onResume() {
+    super.onResume();
+    debugView.onResume();
+  }
 
-    override protected fun onPause() {
-        super.onPause()
-        debugView.onPause()
-    }
+  override protected fun onPause() {
+    super.onPause()
+    debugView.onPause()
+  }
 
-    override protected fun onStop() {
-        super.onStop()
-        debugView.onStop()
-    }
+  override protected fun onStop() {
+    super.onStop()
+    debugView.onStop()
+  }
 }

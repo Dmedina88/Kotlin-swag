@@ -8,11 +8,11 @@ import java.util.concurrent.TimeUnit
 val THROTTLE = 300L
 
 fun <T> Observable<T>.applySchedulers(): Observable<T> =
-        subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread())
+    subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread())
 
 fun <T> Observable<T>.applyThrottle(): Observable<T> =
-        throttleFirst(THROTTLE, TimeUnit.MILLISECONDS)
+    throttleFirst(THROTTLE, TimeUnit.MILLISECONDS)
 
 fun <T> Observable<T>.doAll(): Observable<T> =
-        applySchedulers().applyThrottle()
+    applySchedulers().applyThrottle()
 
