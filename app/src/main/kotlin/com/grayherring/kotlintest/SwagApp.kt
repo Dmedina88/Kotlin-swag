@@ -7,7 +7,7 @@ import timber.log.Timber
 
 
 /**
- * Created by davidmedina on 2/5/17 =).
+ * Created by David Medina.
  */
 
 class SwagApp : Application() {

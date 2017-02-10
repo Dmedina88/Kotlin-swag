@@ -1,7 +1,7 @@
 package com.grayherring.kotlintest.data.modul
 
 /**
- * Created by davidmedina on 2/5/17 =).
+ * Created by David Medina.
  */
 data class Book(var categories: String,
                 var author: String,

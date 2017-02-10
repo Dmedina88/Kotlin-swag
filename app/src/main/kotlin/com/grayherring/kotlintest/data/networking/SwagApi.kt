@@ -6,10 +6,6 @@ import retrofit2.http.*
 import rx.Observable
 
 
-/**
- * Created by davidmedina on 2/5/17 =).
- */
-//http://prolific-interview.herokuapp.com/56609f690c33f80009dde7e5/
 interface SwagApi {
 
 

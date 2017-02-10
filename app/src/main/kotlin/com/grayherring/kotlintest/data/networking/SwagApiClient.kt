@@ -7,7 +7,7 @@ import rx.Observable
 
 
 /**
- * Created by davidmedina on 2/5/17 =).
+ * Created by David Medina.
  */
 class SwagApiClient(val swagApi: SwagApi) : SwagApi {
 

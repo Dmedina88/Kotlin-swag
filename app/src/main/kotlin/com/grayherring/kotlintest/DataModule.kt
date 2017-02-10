@@ -12,6 +12,8 @@ import timber.log.Timber
 @Module
 class DataModule {
 
+  val PREF_NAME = "XzyPref"
+
   @Provides @PerApp fun providePicasso(app: Application): Picasso {
     return Picasso.Builder(app)
         .listener { picasso, uri, e -> Timber.e(e, "Failed to load image: %s", uri) }
@@ -26,4 +28,3 @@ class DataModule {
 
 }
 
-val PREF_NAME = "XzyPref"
