@@ -11,8 +11,9 @@ import timber.log.Timber
 
 @Module
 class DataModule {
-
-  val PREF_NAME = "XzyPref"
+  companion object {
+    val PREF_NAME = "XzyPref"
+  }
 
   @Provides @PerApp fun providePicasso(app: Application): Picasso {
     return Picasso.Builder(app)
@@ -27,4 +28,5 @@ class DataModule {
 //            = BoolPreferences(pref, "MockPref")
 
 }
-
+//todo not sure if it should be here or in the class
+//  val PREF_NAME = "XzyPref"

@@ -2,7 +2,7 @@ package com.grayherring.kotlintest.ui.util
 
 import android.content.Context
 import android.os.Bundle
-import com.grayherring.kotlintest.PREF_NAME
+import com.grayherring.kotlintest.DataModule.Companion.PREF_NAME
 import com.grayherring.kotlintest.R
 import com.grayherring.kotlintest.ui.base.BaseActivity
 import com.grayherring.kotlintest.util.BoolPreferences
