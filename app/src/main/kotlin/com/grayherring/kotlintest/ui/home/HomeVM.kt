@@ -15,7 +15,7 @@ import javax.inject.Inject
 @PerActivity
 class HomeVM @Inject constructor(val swagApiClient: SwagApiClient) : BaseVM() {
 
-  var composite = CompositeSubscription()
+  val composite = CompositeSubscription()
 
   val books = arrayListOf<Book>()
     get
