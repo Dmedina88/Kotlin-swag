@@ -20,13 +20,22 @@ class HomeVM @Inject constructor(val swagApiClient: SwagApiClient) : BaseVM() {
   val books = arrayListOf<Book>()
     get
 
+  var loading = true
+    private set
+
   fun refreshBooks() {
     composite.add(
         swagApiClient.getBooks().subscribe({ books ->
+          loading = false
           this.books.clear()
           this.books.addAll(books)
           Timber.i("###  all %s", this.books.toString())
-        }, { error -> this.logError(error) })
+          notifyChange()
+        }, { error ->
+          loading = false
+          this.logError(error)
+          notifyChange()
+        })
     )
   }
 

@@ -35,7 +35,7 @@ class DebugViewActivity : BaseActivity() {
     debugView = findViewById(R.id.debug_view) as DebugView
 
     //todo this triger on its own when  its true and restarts
-    //todoissue injecting this as apref
+    //todo issue injecting this as apref
     val mockPref = BoolPreferences(this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE), "MockPref")
     val isMockMode = mockPref.isIt()
     Timber.d("isMockMode enabled -> %s", isMockMode)
