@@ -16,4 +16,7 @@ public final class Qualifiers {
 
   @Qualifier @Retention(RUNTIME) public @interface MockPref {
   }
+
+  @Qualifier @Retention(RUNTIME) public @interface BookRelay {
+  }
 }

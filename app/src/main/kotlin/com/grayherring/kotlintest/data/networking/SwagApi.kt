@@ -22,15 +22,13 @@ interface SwagApi {
   @GET("{url}")
   fun getBook(@Path("url") url: String): Observable<Book>
 
-  @FormUrlEncoded
   @POST("books")
-  fun postBook(@FieldMap params: Map<String, String>): Observable<Book>
+  fun postBook(@Body book: Book): Observable<Book>
 
   @FormUrlEncoded
   @PUT("{url}")
   fun checkOutBook(@Path(value = "url") url: String, @Field("lastCheckedOutBy") lastCheckedOutBy: String): Observable<Book>
 
-  @FormUrlEncoded
   @PUT("{url}")
   fun updateBook(@Path(value = "url") url: String, @Body book: Book): Observable<Book>
 

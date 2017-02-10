@@ -1,3 +1,35 @@
 <resources>
   <string name="app_name">KotlinTest</string>
+
+  <string name="title_activity_details">DetailsActivity</string>
+  <string name="add_book">Add</string>
+  <string name="seed">Seed</string>
+  <string name="delete_all">Delete All</string>
+  <string name="search">search</string>
+
+  <string name="categories">Tags %s</string>
+  <string name="last_checked_out">Last Checked Out: %s</string>
+  <string name="publisher">Publisher: %s</string>
+  <string name="checkout">Checkout</string>
+  <string name="title_activity_update_book">Update Book</string>
+  <string name="network_error">Network Error</string>
+  <string name="categories_hint">Categories</string>
+  <string name="author_hint">Author</string>
+  <string name="book_title_hint">Book Title</string>
+  <string name="publisher_hint">Publisher</string>
+  <string name="submit">Submit</string>
+  <string name="share">Share</string>
+  <string name="delete">Delete</string>
+  <string name="update">Update</string>
+  <string name="updating">Updating</string>
+  <string name="deleting">Deleting</string>
+  <string name="adding">Adding Book</string>
+  <string name="done">DONE</string>
+  <string name="unsaved">Unsaved Changes</string>
+  <string name="missing_data">Missing Data</string>
+  <string name="missing_data_dialog">Fill out all fields before submitting.</string>
+  <string name="update_book">Update Book</string>
+  <string name="add_book_title">Add Book</string>
+  <string name="other_books_by_author">Other books by Author</string>
+
 </resources>

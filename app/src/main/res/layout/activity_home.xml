@@ -14,17 +14,28 @@
       android:id="@+id/activity_home"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      tools:context="com.grayherring.kotlintest.ui.home.HomeActivity"
+      tools:context="com.grayherring.kotlintest.ui.home.UpdateActivity"
   >
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_rv"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_book"
     />
 
-
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:onClick="@{() -> vm.newBook()}"
+        android:src="@drawable/dd_ic_battery_unknown_white_24dp"
+    />
 
     <ProgressBar
         android:id="@+id/progress"

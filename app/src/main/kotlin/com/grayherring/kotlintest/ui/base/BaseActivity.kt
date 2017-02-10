@@ -77,3 +77,4 @@ abstract class BaseActivity : RxAppCompatActivity(), ErrorHandler {
   }
 
 }
+

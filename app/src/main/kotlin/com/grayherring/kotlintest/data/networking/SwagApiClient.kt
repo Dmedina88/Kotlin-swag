@@ -27,8 +27,8 @@ class SwagApiClient(val swagApi: SwagApi) : SwagApi {
     return swagApi.getBook(url).applySchedulers()
   }
 
-  override fun postBook(params: Map<String, String>): Observable<Book> {
-    return swagApi.postBook(params).applySchedulers()
+  override fun postBook(book: Book): Observable<Book> {
+    return swagApi.postBook(book).applySchedulers()
   }
 
   override fun checkOutBook(url: String, lastCheckedOutBy: String): Observable<Book> {
@@ -36,7 +36,7 @@ class SwagApiClient(val swagApi: SwagApi) : SwagApi {
   }
 
   override fun updateBook(url: String, book: Book): Observable<Book> {
-    return swagApi.updateBook(url, book).applySchedulers()
+    return swagApi.updateBook(url.replaceFirst("/",""), book).applySchedulers()
   }
 
 }
