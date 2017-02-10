@@ -4,11 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import com.grayherring.kotlintest.PREF_NAME
 import com.grayherring.kotlintest.R
-import com.grayherring.kotlintest.SwagApp
 import com.grayherring.kotlintest.ui.base.BaseActivity
 import com.grayherring.kotlintest.util.BoolPreferences
 import com.jakewharton.processphoenix.ProcessPhoenix
+import com.readystatesoftware.chuck.Chuck
 import io.palaima.debugdrawer.actions.ActionsModule
+import io.palaima.debugdrawer.actions.ButtonAction
 import io.palaima.debugdrawer.actions.SwitchAction
 import io.palaima.debugdrawer.commons.BuildModule
 import io.palaima.debugdrawer.commons.DeviceModule
@@ -21,12 +22,10 @@ import timber.log.Timber
 
 class DebugViewActivity : BaseActivity() {
 
-  private lateinit var debugView: DebugView;
+  private lateinit var debugView: DebugView
 
   override fun initializeDependencyInjector() {
-    (this.application as SwagApp)
-        .component
-        .inject(this)
+    getAppComponent().inject(this)
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +48,14 @@ class DebugViewActivity : BaseActivity() {
         }, isMockMode
     )
 
+    val chuckBtn = ButtonAction(
+        "ChuckInterceptor ",
+        { startActivity(Chuck.getLaunchIntent(this)) }
+    )
+
     debugView.modules(
         ActionsModule(
+            chuckBtn,
             mockSwitch
         ),
         TimberModule(),

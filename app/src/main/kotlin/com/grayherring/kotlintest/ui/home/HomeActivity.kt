@@ -3,7 +3,6 @@ package com.grayherring.kotlintest.ui.home
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.grayherring.kotlintest.R
-import com.grayherring.kotlintest.SwagApp
 import com.grayherring.kotlintest.dagger.Injector
 import com.grayherring.kotlintest.databinding.ActivityHomeBinding
 import com.grayherring.kotlintest.ui.base.BaseActivity
@@ -16,9 +15,7 @@ class HomeActivity : BaseActivity() {
   @Inject lateinit var homeVM: HomeVM
 
   override fun initializeDependencyInjector() {
-    component = (this.application as SwagApp)
-        .component
-        .plus(HomeModule(this))
+    component = getAppComponent().plus(HomeModule(this))
     component.inject(this)
     component.inject(homeVM)
   }

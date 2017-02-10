@@ -1,9 +1,10 @@
 package com.grayherring.kotlintest.data.networking
 
-import com.grayherring.kotlintest.BuildConfig
+import android.app.Application
 import com.grayherring.kotlintest.ExceptionInterceptor
 import com.grayherring.kotlintest.dagger.PerApp
 import com.grayherring.kotlintest.dagger.Qualifiers.API
+import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -17,13 +18,12 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @Module
 class ApiModule {
 
-  @Provides @PerApp fun provideOkHttpClient(swagApiInterceptor: ExceptionInterceptor): OkHttpClient {
+  @Provides @PerApp fun provideOkHttpClient(swagApiInterceptor: ExceptionInterceptor, app: Application): OkHttpClient {
     val clientBuilder = OkHttpClient.Builder()
-    if (BuildConfig.DEBUG) {
-      val httpLoggingInterceptor = HttpLoggingInterceptor()
-      httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-      clientBuilder.addInterceptor(httpLoggingInterceptor)
-    }
+    val httpLoggingInterceptor = HttpLoggingInterceptor()
+    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    clientBuilder.addInterceptor(httpLoggingInterceptor)
+    clientBuilder.addInterceptor(ChuckInterceptor(app))
     clientBuilder.addInterceptor(swagApiInterceptor)
     return clientBuilder.build()
   }
