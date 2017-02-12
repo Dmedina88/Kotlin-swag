@@ -17,7 +17,7 @@ import javax.inject.Inject
 class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
                                    var book: Book,
                                    val updateView: UpdateView,
-                                   errorHandler: ErrorHandler): BaseVM(errorHandler) {
+                                   errorHandler: ErrorHandler) : BaseVM(errorHandler) {
 
   private val composite = CompositeSubscription()
 
@@ -29,17 +29,18 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
     notifyChange()
     if (book.id != -1) {
       composite.add(
-          swagApiClient.updateBook(book.url, book).applySchedulers().subscribe({ newBook ->
-            book = newBook
+          swagApiClient.updateBook(book.url, book).applySchedulers().subscribe({
+            book = it
             loading = false
             updateView.done()
             notifyChange()
-          }, { error ->
+          }, {
             loading = false
-            updateView.showError(error.toString())
-            this.logError(error)
+            updateView.showError(it.toString())
+            this.logError(it)
             notifyChange()
-          })//{ logError(it) }
+            logError(it)
+          })
       )
     } else {
       composite.add(
@@ -49,18 +50,28 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
             loading = false
             notifyChange()
           }, { error ->
+            error?.message
             loading = false
             updateView.showError(error.toString())
             this.logError(error)
             notifyChange()
           })
+
       )
     }
+
   }
 
   fun copyBook() {
     // book = book.copy(id = -1)
     book = book.copy(id = -1, lastCheckedOut = "", lastCheckedOutBy = "")
+
+    val book2 = Book( "text", " test", "test", publisher = "david" )
+
+    var book3 = book2 + book
+
+    var book4 = book2 xx book
+
     updateBooks()
   }
 
