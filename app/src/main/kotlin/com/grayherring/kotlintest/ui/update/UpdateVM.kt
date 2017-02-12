@@ -4,6 +4,7 @@ import com.grayherring.kotlintest.dagger.PerActivity
 import com.grayherring.kotlintest.data.modul.Book
 import com.grayherring.kotlintest.data.networking.SwagApiClient
 import com.grayherring.kotlintest.ui.base.BaseVM
+import com.grayherring.kotlintest.util.applySchedulers
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
     notifyChange()
     if (book.id != -1) {
       composite.add(
-          swagApiClient.updateBook(book.url, book).subscribe({ newBook ->
+          swagApiClient.updateBook(book.url, book).applySchedulers().subscribe({ newBook ->
             book = newBook
             loading = false
             updateView.done()
@@ -40,7 +41,7 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
       )
     } else {
       composite.add(
-          swagApiClient.postBook(book).subscribe({ newBook ->
+          swagApiClient.postBook(book).applySchedulers().subscribe({ newBook ->
             book = newBook
             updateView.done()
             loading = false
@@ -53,6 +54,12 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
           })
       )
     }
+  }
+
+  fun copyBook() {
+    // book = book.copy(id = -1)
+    book = book.copy(id = -1, lastCheckedOut = "", lastCheckedOutBy = "")
+    updateBooks()
   }
 
   override fun onDestroy() {

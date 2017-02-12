@@ -31,5 +31,6 @@
   <string name="update_book">Update Book</string>
   <string name="add_book_title">Add Book</string>
   <string name="other_books_by_author">Other books by Author</string>
+  <string name="copy_book">copy book</string>
 
 </resources>

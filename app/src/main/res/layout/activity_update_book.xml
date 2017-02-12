@@ -68,6 +68,15 @@
 
       />
 
+      <Button
+          android:id="@+id/copy_button"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:onClick="@{() -> vm.copyBook()}"
+          android:text="@string/copy_book"
+
+      />
     </LinearLayout>
 
 </layout>

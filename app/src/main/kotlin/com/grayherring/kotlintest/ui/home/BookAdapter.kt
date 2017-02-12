@@ -11,7 +11,8 @@ import com.grayherring.kotlintest.databinding.ItemBookBinding
 /**
  * Created by davidmedina on 2/10/17 =).
  */
-class BookAdapter(val homeVM: HomeVM) : RecyclerView.Adapter<BookVH>() {
+class BookAdapter(val homeVM: HomeVM) : RecyclerView.Adapter<BookAdapter.BookVH>() {
+
   override fun getItemCount(): Int {
     return homeVM.books.count()
   }
@@ -34,7 +35,8 @@ class BookAdapter(val homeVM: HomeVM) : RecyclerView.Adapter<BookVH>() {
     return BookVH(binding.root)
   }
 
+  class BookVH(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    var binding: ItemBookBinding? = DataBindingUtil.bind(itemView)
+  }
 }
-class BookVH(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-  var binding: ItemBookBinding? = DataBindingUtil.bind(itemView)
-}
+

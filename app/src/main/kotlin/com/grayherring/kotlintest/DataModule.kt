@@ -31,7 +31,7 @@ class DataModule {
 //            = BoolPreferences(pref, "MockPref")
 
 
-  @Provides @PerApp fun provideSBookRelay(): Relay<Book>
+  @Provides @PerApp fun provideSBookRelay(): BehaviorRelay<Book>
       = BehaviorRelay.create()
 }
 //todo not sure if it should be here or in the class
