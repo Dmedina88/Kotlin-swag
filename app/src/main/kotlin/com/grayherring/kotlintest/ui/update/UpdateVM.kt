@@ -4,6 +4,7 @@ import com.grayherring.kotlintest.dagger.PerActivity
 import com.grayherring.kotlintest.data.modul.Book
 import com.grayherring.kotlintest.data.networking.SwagApiClient
 import com.grayherring.kotlintest.ui.base.BaseVM
+import com.grayherring.kotlintest.util.ErrorHandler
 import com.grayherring.kotlintest.util.applySchedulers
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @PerActivity
 class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
                                    var book: Book,
-                                   val updateView: UpdateView) : BaseVM() {
+                                   val updateView: UpdateView,
+                                   errorHandler: ErrorHandler): BaseVM(errorHandler) {
 
   private val composite = CompositeSubscription()
 
