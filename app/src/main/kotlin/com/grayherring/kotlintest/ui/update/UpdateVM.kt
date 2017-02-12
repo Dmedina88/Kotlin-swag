@@ -39,7 +39,7 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
             updateView.showError(error.toString())
             this.logError(error)
             notifyChange()
-          })
+          })//{ logError(it) }
       )
     } else {
       composite.add(
