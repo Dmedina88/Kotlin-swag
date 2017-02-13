@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import com.grayherring.kotlintest.dagger.PerApp
 import com.grayherring.kotlintest.data.modul.Book
 import com.jakewharton.rxrelay2.BehaviorRelay
-import com.jakewharton.rxrelay2.Relay
 import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides

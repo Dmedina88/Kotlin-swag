@@ -28,7 +28,7 @@ class SwagApp : Application() {
     return SwagAppComponent.Initializer.init(this)
   }
 
-  operator fun get(activity: Activity): SwagApp {
+  fun get(activity: Activity): SwagApp {
     return activity.application as SwagApp
   }
 

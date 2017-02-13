@@ -17,6 +17,7 @@ import javax.inject.Inject
  */
 @PerActivity
 class HomeVM @Inject constructor(val swagApiClient: SwagApiClient,
+                                 val bookRelay: BehaviorRelay<Book>,
                                  val homeView: HomeView,
                                  errorHandler: ErrorHandler) : BaseVM(errorHandler) {
 
