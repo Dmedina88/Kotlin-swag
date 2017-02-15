@@ -3,7 +3,7 @@ package com.grayherring.kotlintest.util
 import timber.log.Timber
 
 /**
- * Created by davidmedina on 2/5/17 =).
+ * Created by David Medina.
  */
 interface ErrorHandler {
   companion object : ErrorHandler {
@@ -13,4 +13,5 @@ interface ErrorHandler {
   }
 
   fun logError(error: Throwable)
+
 }

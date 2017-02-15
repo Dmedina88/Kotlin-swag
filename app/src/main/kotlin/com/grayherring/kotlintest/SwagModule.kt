@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Created by davidmedina on 2/5/17 =).
+ * Created by David Medina.
  */
 @Module
 class SwagModule(private val app: SwagApp) {

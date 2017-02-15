@@ -2,7 +2,7 @@ package com.grayherring.kotlintest.ui.util
 
 import android.content.Context
 import android.os.Bundle
-import com.grayherring.kotlintest.PREF_NAME
+import com.grayherring.kotlintest.DataModule.Companion.PREF_NAME
 import com.grayherring.kotlintest.R
 import com.grayherring.kotlintest.ui.base.BaseActivity
 import com.grayherring.kotlintest.util.BoolPreferences
@@ -35,17 +35,18 @@ class DebugViewActivity : BaseActivity() {
     debugView = findViewById(R.id.debug_view) as DebugView
 
     //todo this triger on its own when  its true and restarts
-    //todoissue injecting this as apref
-    val mockPref = BoolPreferences(this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE), "MockPref")
+    //todo issue injecting this as apref
+    val mockPref = BoolPreferences(this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE),
+                                   "MockPref")
     val isMockMode = mockPref.isIt()
     Timber.d("isMockMode enabled -> %s", isMockMode)
     val mockSwitch = SwitchAction("Mock Mode: ",
-        { value ->
-          if (isMockMode != value) {
-            mockPref.set(value)
-            ProcessPhoenix.triggerRebirth(this@DebugViewActivity)
-          }
-        }, isMockMode
+                                  { value ->
+                                    if (isMockMode != value) {
+                                      mockPref.set(value)
+                                      ProcessPhoenix.triggerRebirth(this@DebugViewActivity)
+                                    }
+                                  }, isMockMode
     )
 
     val chuckBtn = ButtonAction(
