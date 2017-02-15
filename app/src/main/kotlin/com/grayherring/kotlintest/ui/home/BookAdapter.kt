@@ -20,7 +20,7 @@ class BookAdapter(val homeVM: HomeVM) : RecyclerView.Adapter<BookAdapter.BookVH>
   override fun onBindViewHolder(holder: BookVH, position: Int) {
     val book = homeVM.books[position]
     holder.binding!!.book = book
-    holder.binding!!.root.setOnClickListener {  homeVM.update(book) }
+    holder.binding!!.root.setOnClickListener { homeVM.update(book) }
 
   }
 

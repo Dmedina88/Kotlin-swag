@@ -17,8 +17,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 class ApiModule {
-  
-  @Provides @PerApp fun provideOkHttpClient(swagApiInterceptor: ExceptionInterceptor, app: Application): OkHttpClient {
+
+  @Provides @PerApp fun provideOkHttpClient(swagApiInterceptor: ExceptionInterceptor,
+                                            app: Application): OkHttpClient {
     val clientBuilder = OkHttpClient.Builder()
     val httpLoggingInterceptor = HttpLoggingInterceptor()
     httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

@@ -29,33 +29,36 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
     notifyChange()
     if (book.id != -1) {
       composite.add(
-          swagApiClient.updateBook(book.url, book).applySchedulers().subscribe({
-            book = it
-            loading = false
-            updateView.done()
-            notifyChange()
-          }, {
-            loading = false
-            updateView.showError(it.toString())
-            this.logError(it)
-            notifyChange()
-            logError(it)
-          })
+          swagApiClient.updateBook(book.url, book)
+              .applySchedulers()
+              .subscribe({
+                           book = it
+                           loading = false
+                           updateView.done()
+                           notifyChange()
+                         }, {
+                           loading = false
+                           updateView.showError(
+                               it.toString())
+                           this.logError(it)
+                           notifyChange()
+                           logError(it)
+                         })
       )
     } else {
       composite.add(
           swagApiClient.postBook(book).applySchedulers().subscribe({ newBook ->
-            book = newBook
-            updateView.done()
-            loading = false
-            notifyChange()
-          }, { error ->
-            error?.message
-            loading = false
-            updateView.showError(error.toString())
-            this.logError(error)
-            notifyChange()
-          })
+                                                                     book = newBook
+                                                                     updateView.done()
+                                                                     loading = false
+                                                                     notifyChange()
+                                                                   }, { error ->
+                                                                     error?.message
+                                                                     loading = false
+                                                                     updateView.showError(error.toString())
+                                                                     this.logError(error)
+                                                                     notifyChange()
+                                                                   })
 
       )
     }
@@ -64,13 +67,12 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
 
   fun copyBook() {
     // book = book.copy(id = -1)
-    book = book.copy(id = -1, lastCheckedOut = "", lastCheckedOutBy = "")
 
-    val book2 = Book( "text", " test", "test", publisher = "david" )
-
-    var book3 = book2 + book
-
-    var book4 = book2 xx book
+    book = book.copy(
+        id = -1,
+        lastCheckedOut = "",
+        lastCheckedOutBy = ""
+    )
 
     updateBooks()
   }

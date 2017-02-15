@@ -36,16 +36,17 @@ class DebugViewActivity : BaseActivity() {
 
     //todo this triger on its own when  its true and restarts
     //todo issue injecting this as apref
-    val mockPref = BoolPreferences(this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE), "MockPref")
+    val mockPref = BoolPreferences(this.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE),
+                                   "MockPref")
     val isMockMode = mockPref.isIt()
     Timber.d("isMockMode enabled -> %s", isMockMode)
     val mockSwitch = SwitchAction("Mock Mode: ",
-        { value ->
-          if (isMockMode != value) {
-            mockPref.set(value)
-            ProcessPhoenix.triggerRebirth(this@DebugViewActivity)
-          }
-        }, isMockMode
+                                  { value ->
+                                    if (isMockMode != value) {
+                                      mockPref.set(value)
+                                      ProcessPhoenix.triggerRebirth(this@DebugViewActivity)
+                                    }
+                                  }, isMockMode
     )
 
     val chuckBtn = ButtonAction(

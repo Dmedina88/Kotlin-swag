@@ -34,17 +34,18 @@ class HomeVM @Inject constructor(val swagApiClient: SwagApiClient,
     notifyChange()
     composite.add(
         swagApiClient.getBooks().applySchedulers().subscribe({ books ->
-          loading = false
-          this.books.clear()
-          this.books.addAll(books)
-          Timber.i("###  all %s", this.books.toString())
-          homeView.showUpdates()
-          notifyChange()
-        }, { error ->
-          loading = false
-          this.logError(error)
-          notifyChange()
-        })
+                                                               loading = false
+                                                               this.books.clear()
+                                                               this.books.addAll(books)
+                                                               Timber.i("###  all %s",
+                                                                        this.books.toString())
+                                                               homeView.showUpdates()
+                                                               notifyChange()
+                                                             }, { error ->
+                                                               loading = false
+                                                               this.logError(error)
+                                                               notifyChange()
+                                                             })
     )
   }
 

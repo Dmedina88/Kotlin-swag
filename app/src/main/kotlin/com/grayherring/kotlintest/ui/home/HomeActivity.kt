@@ -56,7 +56,7 @@ class HomeActivity : BaseActivity(), HomeView {
 
   override fun startEdit(book: Book) {
     Timber.i("### start edit %s", book.toString())
-    UpdateActivity.start(this,book)
+    UpdateActivity.start(this, book)
   }
 
 }

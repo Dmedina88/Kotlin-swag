@@ -34,7 +34,10 @@ class UpdateActivity : BaseActivity(), UpdateView {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView<ActivityUpdateBookBinding>(this, R.layout.activity_update_book)
+    binding = DataBindingUtil.setContentView<ActivityUpdateBookBinding>(
+        this,
+        R.layout.activity_update_book)
+
     binding.vm = vm
     vm.onCreate()
     this.addBindable(vm)
@@ -57,8 +60,9 @@ class UpdateActivity : BaseActivity(), UpdateView {
 
   override fun done() {
     this.toast("O yeaaaaaaa")
+
     composite.add(
-        Observable.timer(2, TimeUnit.SECONDS)
+        Observable.timer(500, TimeUnit.MILLISECONDS)
             .applySchedulers()
             .onError { error -> this.logError(error) }
             .subscribe { this.finish() }

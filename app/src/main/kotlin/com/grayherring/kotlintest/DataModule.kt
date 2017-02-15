@@ -26,8 +26,8 @@ class DataModule {
   @Provides @PerApp fun provideSharedPreferences(app: Application): SharedPreferences
       = app.getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
-//    @Provides @PerApp @MockPref fun provideMockPref(pref: SharedPreferences): BoolPreferences
-//            = BoolPreferences(pref, "MockPref")
+  //    @Provides @PerApp @MockPref fun provideMockPref(pref: SharedPreferences): BoolPreferences
+  //            = BoolPreferences(pref, "MockPref")
 
 
   @Provides @PerApp fun provideSBookRelay(): BehaviorRelay<Book>

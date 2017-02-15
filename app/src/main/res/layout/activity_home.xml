@@ -4,7 +4,7 @@
     <variable
         type="com.grayherring.kotlintest.ui.home.HomeVM"
         name="vm"
-    />
+        />
     <import type="android.view.View"/>
 
   </data>
@@ -15,14 +15,14 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       tools:context="com.grayherring.kotlintest.ui.home.UpdateActivity"
-  >
+      >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_book"
-    />
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
         android:clickable="true"
         android:onClick="@{() -> vm.newBook()}"
         android:src="@drawable/dd_ic_battery_unknown_white_24dp"
-    />
+        />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -45,6 +45,6 @@
         android:indeterminateTint="@color/colorPrimary"
         android:visibility="@{vm.loading ? View.VISIBLE : View.GONE}"
         style="?android:attr/progressBarStyleLarge"
-    />
+        />
   </RelativeLayout>
 </layout>

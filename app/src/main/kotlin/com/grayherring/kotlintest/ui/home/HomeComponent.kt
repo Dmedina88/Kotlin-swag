@@ -5,7 +5,7 @@ import dagger.Subcomponent
 
 @PerActivity
 @Subcomponent(modules = arrayOf(HomeModule::class))
-interface HomeComponent  {
+interface HomeComponent {
   fun inject(activity: HomeActivity)
   fun inject(homeVM: HomeVM)
 
