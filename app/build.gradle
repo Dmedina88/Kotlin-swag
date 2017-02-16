@@ -62,6 +62,7 @@ dependencies {
   final DEBUG_DRAWER_VERSION = '0.7.0'
   final RXBINDING_VERSON = '1.0.0'
   final RXLIFECYCLE = '2.0.1'
+  final anko_version = '0.9.1a'
 
   //standard
 
@@ -82,6 +83,8 @@ dependencies {
   compile "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION"
   compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
   compile 'com.squareup.picasso:picasso:2.5.2'
+  compile 'com.squareup.moshi:moshi:1.4.0'
+
 
   compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RXBINDING_VERSON"
   //  compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$RXBINDING_VERSON"
@@ -111,6 +114,16 @@ dependencies {
   //code gen
   kapt 'com.android.databinding:compiler:2.2.3'
   kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+
+//expermental
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  compile "org.jetbrains.anko:anko-sdk15:$anko_version" // So here it's 15 too
+
+  // Anko libs matching support libs
+  compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+  compile "org.jetbrains.anko:anko-design:$anko_version"
+  compile "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
+// end of that
 
 
   // Debug Drawer Library

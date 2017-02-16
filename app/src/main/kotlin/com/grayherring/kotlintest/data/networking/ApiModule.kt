@@ -4,6 +4,8 @@ import android.app.Application
 import com.grayherring.kotlintest.ExceptionInterceptor
 import com.grayherring.kotlintest.dagger.PerApp
 import com.grayherring.kotlintest.dagger.Qualifiers.API
+import com.grayherring.kotlintest.dagger.Qualifiers.MockPref
+import com.grayherring.kotlintest.util.BoolPreferences
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -14,6 +16,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import timber.log.Timber
 
 @Module
 class ApiModule {
@@ -33,8 +36,18 @@ class ApiModule {
 
   @Provides @PerApp fun provideHttpUrl(): HttpUrl = HttpUrl.parse("http://prolific-interview.herokuapp.com/56609f690c33f80009dde7e5/")
 
-  @Provides @PerApp @API fun provideSwagApi(retrofit: Retrofit): SwagApi
-      = retrofit.create(SwagApi::class.java)
+  @Provides @PerApp @API fun provideSwagApi(retrofit: Retrofit,
+                                            @MockPref isMock: BoolPreferences,
+                                            app: Application): SwagApi {
+    Timber.d("#### ${isMock.isIt()}")
+
+    if (!isMock.isIt()) {
+      return retrofit.create(SwagApi::class.java)
+    } else {
+      return MockSwag(Moshi.Builder().build(),app)
+    }
+
+  }
 
   @Provides @PerApp fun provideSwagApiClient(@API swagApi: SwagApi) = SwagApiClient(swagApi)
 

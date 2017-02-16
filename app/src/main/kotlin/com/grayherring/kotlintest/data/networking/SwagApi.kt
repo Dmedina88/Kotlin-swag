@@ -17,7 +17,7 @@ interface SwagApi {
 
 
   @GET("books")
-  fun getBooks(): Observable<Array<Book>>
+  fun getBooks(): Observable<List<Book>>
 
   @DELETE("clean/")
   fun deleteAllBooks(): Observable<Response<String>>

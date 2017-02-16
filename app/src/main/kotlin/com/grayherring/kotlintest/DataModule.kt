@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.grayherring.kotlintest.dagger.PerApp
+import com.grayherring.kotlintest.dagger.Qualifiers.MockPref
 import com.grayherring.kotlintest.data.modul.Book
+import com.grayherring.kotlintest.util.BoolPreferences
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.squareup.picasso.Picasso
 import dagger.Module
@@ -26,9 +28,8 @@ class DataModule {
   @Provides @PerApp fun provideSharedPreferences(app: Application): SharedPreferences
       = app.getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
-  //    @Provides @PerApp @MockPref fun provideMockPref(pref: SharedPreferences): BoolPreferences
-  //            = BoolPreferences(pref, "MockPref")
-
+  @Provides @PerApp @MockPref fun provideMockPref(pref: SharedPreferences): BoolPreferences
+      = BoolPreferences(pref, "MockPref")
 
   @Provides @PerApp fun provideSBookRelay(): BehaviorRelay<Book>
       = BehaviorRelay.create()

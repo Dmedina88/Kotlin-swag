@@ -73,8 +73,8 @@ class DebugViewActivity : BaseActivity() {
   }
 
   override protected fun onResume() {
-    super.onResume();
-    debugView.onResume();
+    super.onResume()
+    debugView.onResume()
   }
 
   override protected fun onPause() {
