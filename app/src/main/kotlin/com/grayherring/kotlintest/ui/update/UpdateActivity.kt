@@ -12,6 +12,7 @@ import com.grayherring.kotlintest.ui.base.BaseActivity
 import com.grayherring.kotlintest.ui.base.toast
 import com.grayherring.kotlintest.ui.update.UpdateModule.Companion.EXTRA_BOOK
 import com.grayherring.kotlintest.util.applySchedulers
+import com.jakewharton.rxbinding.widget.textChanges
 import rx.Observable
 import rx.lang.kotlin.onError
 import rx.subscriptions.CompositeSubscription
@@ -40,6 +41,10 @@ class UpdateActivity : BaseActivity(), UpdateView {
 
     binding.vm = vm
     vm.onCreate()
+    vm.addLockScreenObservables(binding.authorEdittext.textChanges(),
+                                binding.bookTitleTextEdit.textChanges(),
+                                binding.categoriesEdittext.textChanges(),
+                                binding.publisherEdittext.textChanges())
     this.addBindable(vm)
   }
 

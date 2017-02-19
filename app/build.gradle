@@ -86,7 +86,7 @@ dependencies {
   compile 'com.squareup.moshi:moshi:1.4.0'
 
 
-  compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RXBINDING_VERSON"
+    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RXBINDING_VERSON"
   //  compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$RXBINDING_VERSON"
   //  compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RXBINDING_VERSON"
   //  compile "com.jakewharton.rxbinding:rxbinding-design-kotlin:$RXBINDING_VERSON"
@@ -116,7 +116,6 @@ dependencies {
   kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
 //expermental
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   compile "org.jetbrains.anko:anko-sdk15:$anko_version" // So here it's 15 too
 
   // Anko libs matching support libs

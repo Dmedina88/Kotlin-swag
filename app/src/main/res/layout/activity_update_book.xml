@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="@{() -> vm.updateBooks()}"
+        android:enabled="@{!vm.lock}"
         android:text="@string/submit"
 
         />
@@ -74,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="@{() -> vm.copyBook()}"
+        android:enabled="@{!vm.lock}"
         android:text="@string/copy_book"
 
         />
