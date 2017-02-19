@@ -65,14 +65,12 @@ class UpdateActivity : BaseActivity(), UpdateView {
 
   override fun done() {
     this.toast("O yeaaaaaaa")
-
     composite.add(
         Observable.timer(500, TimeUnit.MILLISECONDS)
             .applySchedulers()
             .onError { error -> this.logError(error) }
             .subscribe { this.finish() }
     )
-
   }
 
   override fun showError(error: String) {
@@ -83,5 +81,7 @@ class UpdateActivity : BaseActivity(), UpdateView {
     composite.unsubscribe()
     super.onDestroy()
   }
+
+
 }
 

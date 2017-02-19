@@ -60,18 +60,21 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
       )
     } else {
       composite.add(
-          swagApiClient.postBook(book).applySchedulers().subscribe({ newBook ->
-                                                                     book = newBook
-                                                                     updateView.done()
-                                                                     loading = false
-                                                                     notifyChange()
-                                                                   }, { error ->
-                                                                     error?.message
-                                                                     loading = false
-                                                                     updateView.showError(error.toString())
-                                                                     this.logError(error)
-                                                                     notifyChange()
-                                                                   })
+          swagApiClient
+              .postBook(book)
+              .applySchedulers()
+              .subscribe({ newBook ->
+                           book = newBook
+                           updateView.done()
+                           loading = false
+                           notifyChange()
+                         }, { error ->
+                           error?.message
+                           loading = false
+                           updateView.showError(error.toString())
+                           this.logError(error)
+                           notifyChange()
+                         })
 
       )
     }
@@ -95,7 +98,6 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
   }
 
   fun addLockScreenObservables(vararg observables: Observable<CharSequence>) {
-
     val isEmptyObservable = observables.asList().combineLatest({ it })
     isEmptyObservable.map { notEmpty(it) }.onError { this.logError(it) }.subscribe {
       lock = !it

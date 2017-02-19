@@ -21,8 +21,7 @@ class MockSwag(val moshi: Moshi, val context: Context) : SwagApi {
     input.close()
     val json = String(buffer)
     moshi.adapter<List<Book>>(Types.newParameterizedType(List::class.java,
-                                                         Book::class.java))
-        .fromJson(json)
+                                                         Book::class.java)).fromJson(json)
   }
 
   override fun getBooks(): Observable<List<Book>> {
