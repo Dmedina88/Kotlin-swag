@@ -1,15 +1,12 @@
 package com.grayherring.kotlintest.ui.home
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import com.grayherring.kotlintest.R
 import com.grayherring.kotlintest.dagger.Injector
 import com.grayherring.kotlintest.data.modul.Book
-import com.grayherring.kotlintest.databinding.ActivityHomeBinding
 import com.grayherring.kotlintest.ui.base.BaseActivity
 import com.grayherring.kotlintest.ui.base.toast
 import com.grayherring.kotlintest.ui.update.UpdateActivity
+import org.jetbrains.anko.setContentView
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -17,7 +14,7 @@ import javax.inject.Inject
 class HomeActivity : BaseActivity(), HomeView {
 
   private lateinit var component: HomeComponent
-  private lateinit var binding: ActivityHomeBinding
+  lateinit var homeUIView: HomeUI
   @Inject lateinit var homeVM: HomeVM
   @Inject lateinit var bookAdapter: BookAdapter
 
@@ -28,15 +25,11 @@ class HomeActivity : BaseActivity(), HomeView {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
-    binding.vm = homeVM
-    binding.recyclerView.layoutManager = LinearLayoutManager(this)
-    binding.recyclerView.adapter = bookAdapter
     homeVM.onCreate()
+    homeUIView = HomeUI(homeVM)
+    homeUIView.setContentView(this)
     this.addBindable(homeVM)
     this.toast("TOASTY!")
-
-
   }
 
   override fun getSystemService(name: String): Any {
@@ -51,7 +44,7 @@ class HomeActivity : BaseActivity(), HomeView {
   }
 
   override fun showUpdates() {
-    binding.recyclerView.adapter.notifyDataSetChanged()
+    homeUIView.recyclerView.adapter.notifyDataSetChanged()
   }
 
   override fun startEdit(book: Book) {

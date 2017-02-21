@@ -6,6 +6,7 @@ import com.grayherring.kotlintest.data.networking.SwagApiClient
 import com.grayherring.kotlintest.ui.base.BaseVM
 import com.grayherring.kotlintest.util.ErrorHandler
 import com.grayherring.kotlintest.util.applySchedulers
+import com.jakewharton.rxbinding.widget.textChanges
 import rx.Observable
 import rx.lang.kotlin.combineLatest
 import rx.lang.kotlin.onError
@@ -25,21 +26,22 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
                                    errorHandler: ErrorHandler) : BaseVM(errorHandler) {
 
   private val composite = CompositeSubscription()
+  private var updateUI: UpdateUI? = null
 
-  var loading = true
+  var loading = false
     private set
 
   var lock by Delegates.observable(false) { kProperty: KProperty<*>,
                                             oldVale: Boolean,
                                             newVale: Boolean ->
     if (oldVale != newVale) {
-      notifyChange()
+      updateUI?.notifyLock()
     }
   }
 
   fun updateBooks() {
     loading = true
-    notifyChange()
+    updateUI?.notifyChanges()
     if (book.id != -1) {
       composite.add(
           swagApiClient.updateBook(book.url, book)
@@ -47,14 +49,14 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
               .subscribe({
                            book = it
                            loading = false
+                           updateUI?.notifyChanges()
                            updateView.done()
-                           notifyChange()
                          }, {
                            loading = false
                            updateView.showError(
                                it.toString())
                            this.logError(it)
-                           notifyChange()
+                           updateUI?.notifyChanges()
                            logError(it)
                          })
       )
@@ -67,13 +69,13 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
                            book = newBook
                            updateView.done()
                            loading = false
-                           notifyChange()
+                           updateUI?.notifyChanges()
                          }, { error ->
                            error?.message
                            loading = false
                            updateView.showError(error.toString())
                            this.logError(error)
-                           notifyChange()
+                           updateUI?.notifyChanges()
                          })
 
       )
@@ -98,14 +100,29 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
   }
 
   fun addLockScreenObservables(vararg observables: Observable<CharSequence>) {
-    val isEmptyObservable = observables.asList().combineLatest({ it })
-    isEmptyObservable.map { notEmpty(it) }.onError { this.logError(it) }.subscribe {
-      lock = !it
-    }
+    val isEmptyObservable = observables
+        .asList()
+        .combineLatest({ it })
+    isEmptyObservable
+        .map { notEmpty(it) }
+        .onError { this.logError(it) }
+        .subscribe {
+          lock = !it
+        }
   }
 
   fun notEmpty(values: List<CharSequence>): Boolean {
     return values.all { it.isNotEmpty() }
+  }
+
+  fun setBindings(binding: UpdateUI) {
+    this.updateUI = binding
+    with(binding) {
+      addLockScreenObservables(auther.textChanges(),
+                               title.textChanges(),
+                               categories.textChanges(),
+                               publisher.textChanges())
+    }
   }
 
 }

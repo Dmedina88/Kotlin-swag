@@ -17,7 +17,6 @@ import javax.inject.Inject
  */
 @PerActivity
 class HomeVM @Inject constructor(val swagApiClient: SwagApiClient,
-                                 val bookRelay: BehaviorRelay<Book>,
                                  val homeView: HomeView,
                                  errorHandler: ErrorHandler) : BaseVM(errorHandler) {
 
@@ -31,7 +30,6 @@ class HomeVM @Inject constructor(val swagApiClient: SwagApiClient,
 
   fun refreshBooks() {
     loading = true
-    notifyChange()
     composite.add(
         swagApiClient.getBooks()
             .applySchedulers()
@@ -42,11 +40,9 @@ class HomeVM @Inject constructor(val swagApiClient: SwagApiClient,
                          Timber.i("###  all %s",
                                   this.books.toString())
                          homeView.showUpdates()
-                         notifyChange()
                        }, { error ->
                          loading = false
                          this.logError(error)
-                         notifyChange()
                        })
     )
   }

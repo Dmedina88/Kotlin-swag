@@ -105,7 +105,6 @@ dependencies {
 
   //dagger
   compile "com.google.dagger:dagger:$DAGGER_VERSION"
-  kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
   provided 'org.glassfish:javax.annotation:10.0-b28'
 
   compile 'com.jakewharton.timber:timber:4.0.1'
@@ -116,8 +115,8 @@ dependencies {
   kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
 //expermental
+ // compile "org.jetbrains.anko:anko-common:$anko_version"
   compile "org.jetbrains.anko:anko-sdk15:$anko_version" // So here it's 15 too
-
   // Anko libs matching support libs
   compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
   compile "org.jetbrains.anko:anko-design:$anko_version"

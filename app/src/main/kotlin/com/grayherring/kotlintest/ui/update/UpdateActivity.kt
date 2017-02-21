@@ -2,17 +2,15 @@ package com.grayherring.kotlintest.ui.update
 
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import com.grayherring.kotlintest.R
 import com.grayherring.kotlintest.dagger.Injector
 import com.grayherring.kotlintest.data.modul.Book
-import com.grayherring.kotlintest.databinding.ActivityUpdateBookBinding
 import com.grayherring.kotlintest.ui.base.BaseActivity
 import com.grayherring.kotlintest.ui.base.toast
 import com.grayherring.kotlintest.ui.update.UpdateModule.Companion.EXTRA_BOOK
 import com.grayherring.kotlintest.util.applySchedulers
 import com.jakewharton.rxbinding.widget.textChanges
+import org.jetbrains.anko.setContentView
 import rx.Observable
 import rx.lang.kotlin.onError
 import rx.subscriptions.CompositeSubscription
@@ -24,7 +22,6 @@ class UpdateActivity : BaseActivity(), UpdateView {
 
   private val composite = CompositeSubscription()
   private lateinit var component: UpdateComponent
-  private lateinit var binding: ActivityUpdateBookBinding
   @Inject lateinit var vm: UpdateVM
 
   override fun initializeDependencyInjector() {
@@ -35,16 +32,11 @@ class UpdateActivity : BaseActivity(), UpdateView {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView<ActivityUpdateBookBinding>(
-        this,
-        R.layout.activity_update_book)
-
-    binding.vm = vm
+    val binding = UpdateUI(vm)
+    binding.setContentView(this)
+    vm.setBindings(binding)
     vm.onCreate()
-    vm.addLockScreenObservables(binding.authorEdittext.textChanges(),
-                                binding.bookTitleTextEdit.textChanges(),
-                                binding.categoriesEdittext.textChanges(),
-                                binding.publisherEdittext.textChanges())
+
     this.addBindable(vm)
   }
 
@@ -81,7 +73,6 @@ class UpdateActivity : BaseActivity(), UpdateView {
     composite.unsubscribe()
     super.onDestroy()
   }
-
 
 }
 

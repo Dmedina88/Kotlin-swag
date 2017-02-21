@@ -18,8 +18,8 @@ class HomeModule(private val activity: HomeActivity) {
 
   //  @Provides @PerActivity internal fun provideHomeVM(swagApiClient: SwagApiClient,
   //                                                    bookRelay: BehaviorRelay<Book>,
-  //                                                    homeView: HomeView): HomeVM {
-  //    return HomeVM(swagApiClient, bookRelay, homeView)
+  //                                                    homeUIView: HomeView): HomeVM {
+  //    return HomeVM(swagApiClient, bookRelay, homeUIView)
   //  }
 
   @Provides @PerActivity internal fun provideAdapter(homeView: HomeVM): BookAdapter {
