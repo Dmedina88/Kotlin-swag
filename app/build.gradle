@@ -54,7 +54,7 @@ kapt {
 
 dependencies {
   final SUPPORT_LIBRARY_VERSION = '25.1.1'
-  final RETROFIT_VERSION = '2.1.0'
+  final RETROFIT_VERSION = '2.2.0'
   final OKHTTP_VERSION = '3.6.0'
   final DAGGER_VERSION = '2.9'
   final RX_JAVA_VERSION = '2.0.5'
@@ -86,7 +86,7 @@ dependencies {
   compile 'com.squareup.moshi:moshi:1.4.0'
 
 
-    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RXBINDING_VERSON"
+  compile "com.jakewharton.rxbinding:rxbinding-kotlin:$RXBINDING_VERSON"
   //  compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$RXBINDING_VERSON"
   //  compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$RXBINDING_VERSON"
   //  compile "com.jakewharton.rxbinding:rxbinding-design-kotlin:$RXBINDING_VERSON"
@@ -102,27 +102,27 @@ dependencies {
   compile "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION"
 
   compile "io.reactivex:rxkotlin:0.60.0"
+  compile 'uk.co.chrisjenx:calligraphy:2.2.0'
 
   //dagger
   compile "com.google.dagger:dagger:$DAGGER_VERSION"
   provided 'org.glassfish:javax.annotation:10.0-b28'
 
-  compile 'com.jakewharton.timber:timber:4.0.1'
+  compile 'com.jakewharton.timber:timber:4.5.1'
   compile 'com.hannesdorfmann:adapterdelegates2:2.0.0'
 
   //code gen
   kapt 'com.android.databinding:compiler:2.2.3'
   kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
-//expermental
- // compile "org.jetbrains.anko:anko-common:$anko_version"
+  //expermental
+  // compile "org.jetbrains.anko:anko-common:$anko_version"
   compile "org.jetbrains.anko:anko-sdk15:$anko_version" // So here it's 15 too
   // Anko libs matching support libs
   compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
   compile "org.jetbrains.anko:anko-design:$anko_version"
   compile "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
-// end of that
-
+  // end of that
 
   // Debug Drawer Library
   debugCompile "io.palaima.debugdrawer:debugdrawer-view:$DEBUG_DRAWER_VERSION"

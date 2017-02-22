@@ -1,5 +1,6 @@
 package com.grayherring.kotlintest.ui.home
 
+import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
@@ -15,6 +16,8 @@ import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.design.floatingActionButton
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.frameLayout
+import org.jetbrains.anko.imageResource
+import org.jetbrains.anko.margin
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.progressBar
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -31,6 +34,14 @@ class HomeUI(val homeVM: HomeVM) : AnkoComponent<HomeActivity> {
   override fun createView(ui: AnkoContext<HomeActivity>): View {
     val homeView = with(ui) {
       frameLayout {
+        floatingActionButton {
+          imageResource = android.R.drawable.ic_dialog_email
+          lparams {
+            margin = resources.getDimensionPixelSize(R.dimen.fab_margin)
+            gravity = Gravity.BOTTOM or GravityCompat.END
+          }
+          onClick { homeVM.newBook() }
+        }
         verticalLayout {
           recyclerView = recyclerView {
             val orientation = LinearLayoutManager.VERTICAL
@@ -39,9 +50,7 @@ class HomeUI(val homeVM: HomeVM) : AnkoComponent<HomeActivity> {
             this@HomeUI.adapter = BookAdapter(homeVM)
             adapter = BookAdapter(homeVM)
           }
-          floatingActionButton(R.drawable.dd_ic_battery_unknown_white_24dp) {
-            onClick { homeVM.newBook() }
-          }
+
         }
         progressBar = progressBar {
           visibility = GONE
