@@ -1,42 +1,70 @@
 package com.grayherring.kotlintest.ui.home
 
-import android.databinding.DataBindingUtil
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.grayherring.kotlintest.R
-import com.grayherring.kotlintest.databinding.ItemBookBinding
+import android.view.ViewGroup.LayoutParams
+import android.widget.TextView
+import com.grayherring.kotlintest.data.modul.Book
+import org.jetbrains.anko.bottomPadding
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.padding
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.topPadding
+import org.jetbrains.anko.verticalLayout
+import org.jetbrains.anko.wrapContent
 
-/**
- * Created by davidmedina on 2/10/17 =).
- */
-class BookAdapter(val homeVM: HomeVM) : RecyclerView.Adapter<BookAdapter.BookVH>() {
+class Holder(val root: CardView) : RecyclerView.ViewHolder(root) {
+  lateinit var author: TextView
+  lateinit var title: TextView
 
-  override fun getItemCount(): Int {
-    return homeVM.books.count()
+  init {
+    with(root) {
+      layoutParams = LayoutParams(matchParent, wrapContent)
+      padding = dip(8)
+      useCompatPadding = true
+      cardElevation = dip(6).toFloat()
+      verticalLayout {
+        lparams(width = matchParent)
+        author = textView {
+          textSize = 20f
+          topPadding = dip(8)
+          lparams(width = matchParent)
+        }
+        title = textView {
+          textSize = 20f
+          bottomPadding = dip(8)
+          lparams(width = matchParent)
+        }
+      }
+    }
   }
 
-  override fun onBindViewHolder(holder: BookVH, position: Int) {
-    val book = homeVM.books[position]
-    holder.binding!!.book = book
-    holder.binding!!.root.setOnClickListener { homeVM.update(book) }
-
-  }
-
-  override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BookVH {
-    val binding = DataBindingUtil.inflate<ItemBookBinding>(
-        LayoutInflater.from(parent?.context),
-        R.layout.item_book,
-        parent,
-        false
-    )
-
-    return BookVH(binding.root)
-  }
-
-  class BookVH(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-    var binding: ItemBookBinding? = DataBindingUtil.bind(itemView)
+  fun bind(book: Book, update: () -> Unit) {
+    author.text = book.author
+    title.text = book.title
+    root.setOnClickListener { update.invoke() }
   }
 }
+
+class BookAdapter(val homeVM: HomeVM) : RecyclerView.Adapter<Holder>() {
+
+
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder? {
+    val holder = Holder(CardView(parent.context))
+
+    return holder
+  }
+
+  override fun onBindViewHolder(holder: Holder, position: Int) {
+    holder.bind(homeVM.books[position], { homeVM.update(homeVM.books[position]) })
+  }
+
+  override fun getItemCount(): Int {
+    return homeVM.books.size
+  }
+
+}
+
 

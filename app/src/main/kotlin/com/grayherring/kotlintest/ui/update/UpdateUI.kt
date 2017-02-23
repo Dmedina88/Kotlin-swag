@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import com.grayherring.kotlintest.R
 import com.grayherring.kotlintest.ui.base.BaseActivity
+import com.grayherring.kotlintest.ui.base.loudImage
 import com.grayherring.kotlintest.ui.base.throttleClick
 import com.jakewharton.rxbinding.widget.textChanges
 import org.jetbrains.anko.AnkoComponent
@@ -16,6 +17,7 @@ import org.jetbrains.anko.dip
 import org.jetbrains.anko.editText
 import org.jetbrains.anko.enabled
 import org.jetbrains.anko.frameLayout
+import org.jetbrains.anko.imageView
 import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.padding
 import org.jetbrains.anko.progressBar
