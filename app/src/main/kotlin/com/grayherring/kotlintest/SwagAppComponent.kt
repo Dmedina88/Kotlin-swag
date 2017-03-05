@@ -15,7 +15,7 @@ interface SwagAppComponent {
 
   fun inject(app: SwagApp)
 
-  operator fun plus(module: HomeModule): HomeComponent
+  fun plus(module: HomeModule): HomeComponent
 
   class Initializer private constructor() {
     init {

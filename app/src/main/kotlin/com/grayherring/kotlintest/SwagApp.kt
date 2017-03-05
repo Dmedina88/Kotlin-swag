@@ -6,11 +6,12 @@ import io.palaima.debugdrawer.timber.data.LumberYard
 import timber.log.Timber
 
 
-/**
- * Created by David Medina.
- */
-
 class SwagApp : Application() {
+  companion object{
+    fun get(activity: Activity): SwagApp {
+      return activity.application as SwagApp
+    }
+  }
 
   val component = initComponent()
 
@@ -28,9 +29,7 @@ class SwagApp : Application() {
     return SwagAppComponent.Initializer.init(this)
   }
 
-  fun get(activity: Activity): SwagApp {
-    return activity.application as SwagApp
-  }
+
 
 }
 

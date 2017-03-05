@@ -31,7 +31,7 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
   var loading = false
     private set
 
-  var lock by Delegates.observable(false) { kProperty: KProperty<*>,
+  var lock by Delegates.observable(false) { _: KProperty<*>,
                                             oldVale: Boolean,
                                             newVale: Boolean ->
     if (oldVale != newVale) {

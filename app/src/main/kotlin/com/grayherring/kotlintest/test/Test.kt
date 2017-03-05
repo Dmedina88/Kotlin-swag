@@ -67,7 +67,7 @@ open class Test(var mutable: String, val immutable: String, constructorParameter
     }
   }
 
-  var deledateMe: String by Delegate("Test")
+  var delegateMe: String by Delegate("Test")
 
   class Delegate(initValue: String) {
     var value = initValue
