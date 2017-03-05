@@ -2,9 +2,6 @@ package com.grayherring.kotlintest.dagger
 
 import android.content.Context
 
-/**
- * Created by davidmedina on 2/12/17 =).
- */
 object Injector {
 
   // Explicitly doing a custom service.

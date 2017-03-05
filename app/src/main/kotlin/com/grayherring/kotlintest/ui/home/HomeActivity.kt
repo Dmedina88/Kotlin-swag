@@ -16,7 +16,6 @@ class HomeActivity : BaseActivity(), HomeView {
   private lateinit var component: HomeComponent
   lateinit var homeUIView: HomeUI
   @Inject lateinit var homeVM: HomeVM
-  @Inject lateinit var bookAdapter: BookAdapter
 
   override fun initializeDependencyInjector() {
     component = getAppComponent().plus(HomeModule(this))

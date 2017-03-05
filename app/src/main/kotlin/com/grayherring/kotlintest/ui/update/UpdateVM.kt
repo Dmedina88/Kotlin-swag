@@ -26,7 +26,7 @@ class UpdateVM @Inject constructor(val swagApiClient: SwagApiClient,
                                    errorHandler: ErrorHandler) : BaseVM(errorHandler) {
 
   private val composite = CompositeSubscription()
-  private var updateUI: UpdateUI? = null
+  private var updateUI: IUpdateUI? = null
 
   var loading = false
     private set

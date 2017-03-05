@@ -23,7 +23,17 @@ import org.jetbrains.anko.progressBar
 import org.jetbrains.anko.verticalLayout
 import org.jetbrains.anko.wrapContent
 
-class UpdateUI(val updateVM: UpdateVM) : AnkoComponent<BaseActivity> {
+interface IUpdateUI {
+  fun
+      notifyChanges(){
+    notifyLoading()
+    notifyLock()
+  }
+  fun notifyLoading()
+  fun notifyLock()
+}
+
+class UpdateUI(val updateVM: UpdateVM) : AnkoComponent<BaseActivity>, IUpdateUI {
   lateinit var title: EditText
     private set
   lateinit var auther: EditText
@@ -40,6 +50,7 @@ class UpdateUI(val updateVM: UpdateVM) : AnkoComponent<BaseActivity> {
     private set
 
   override fun createView(ui: AnkoContext<BaseActivity>): View {
+
     val view = with(ui) {
       frameLayout {
         lparams(width = matchParent, height = matchParent) {
@@ -89,15 +100,12 @@ class UpdateUI(val updateVM: UpdateVM) : AnkoComponent<BaseActivity> {
     return view
   }
 
-  fun notifyChanges() {
-    notifyLoading()
-  }
 
-  fun notifyLoading() {
+  override fun notifyLoading() {
     progressBar.visibility = if (updateVM.loading) View.VISIBLE else View.GONE
   }
 
-  fun notifyLock() {
+  override fun notifyLock() {
     submitButton.enabled = !updateVM.lock
     copyButton.enabled = !updateVM.lock
   }
